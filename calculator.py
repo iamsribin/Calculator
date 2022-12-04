@@ -12,18 +12,19 @@ WHITE = "#FFFFFF"
 RED = "#F94040"
 BLUE = "#20459B"
 
+
 class Calculator:
     def __init__(self):
         self.window = tk.Tk()
-        self.window.title("Calculetor")
+        self.window.title("Calculator")
         self.window.iconbitmap("./calculator photo.ico")
         self.window.geometry("375x587")
         self.window.resizable(0, 0)
         self.window.attributes("-alpha", 0.8)
         self.window.configure(bg=BLUE)
 
-        self.total_expression = "0"
-        self.current_expression = "0"
+        self.total_expression = ""
+        self.current_expression = ""
 
         self.display_frame = self.create_display_frame()
         self.button_frame = self.create_button_frame()
@@ -40,7 +41,7 @@ class Calculator:
 
         self.operations = {"*": "\u00d7", "-": "-", "+": "+"}
         self.create_operator_button()
-        
+
         self.create_clear_button()
         self.create_delete_button()
         self.create_equal_button()
@@ -67,7 +68,7 @@ class Calculator:
                                fg=WHITE, padx=24, font=SMALL_FOND_STYLE)
         total_label.pack(expand=True, fill="both")
         label = tk.Label(self.display_frame, text=self.current_expression, anchor=tk.E,
-                          bg=BLUE, fg=WHITE, padx=24, font=LARGE_FOND_STYLE)
+                         bg=BLUE, fg=WHITE, padx=24, font=LARGE_FOND_STYLE)
         label.pack(expand=True, fill="both")
         return total_label, label
 
@@ -76,11 +77,11 @@ class Calculator:
     def create_digit_button(self):
         for digit, grid_value in self.digits.items():
             button = tk.Button(self.button_frame, text=str(digit), bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                               activebackground=BLACK,)
+                               activebackground=BLACK, command=lambda x=digit: self.add_to_expression(x))
             button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW, padx=2, pady=2)
 
         button = tk.Button(self.button_frame, text="0", bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                           activebackground=BLACK)
+                           activebackground=BLACK, command=lambda x=0: self.add_to_expression(x))
         button.grid(row=4, column=1, columnspan=2, sticky=tk.NSEW, padx=2, pady=2)
 
     # ----------------------------------------------------------------------------------------------
@@ -89,30 +90,65 @@ class Calculator:
         i = 0
         for operator, symbol in self.operations.items():
             button = tk.Button(self.button_frame, text=str(symbol), bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                               activeforeground=RED, activebackground=BLACK)
+                               activeforeground=RED, activebackground=BLACK,
+                               command=lambda x=operator: self.append_operator(x))
             button.grid(row=i, column=4, sticky=tk.NSEW, padx=2, pady=2)
             i += 1
 
         button = tk.Button(self.button_frame, text="\u00f7", bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                           activeforeground=RED, activebackground=BLACK)
+                           activeforeground=RED, activebackground=BLACK, command=lambda y="/": self.append_operator(y))
         button.grid(row=0, column=3, sticky=tk.NSEW, padx=2, pady=2)
 
     def create_clear_button(self):
         button = tk.Button(self.button_frame, text="C", bg=RED, fg=BLACK, font=DIGIT_FOND_STYLE,
-                           activebackground=RED, activeforeground=WHITE)
+                           activebackground=RED, activeforeground=WHITE, command=self.clear)
         button.grid(row=0, column=2, sticky=tk.NSEW, padx=2, pady=2)
 
     def create_delete_button(self):
         button = tk.Button(self.button_frame, text="\u232b", bg=RED, fg=BLACK, font=DELETE_FOND_STYLE,
-                           activebackground=RED, activeforeground=WHITE)
+                           activebackground=RED, activeforeground=WHITE, command=self.delete)
         button.grid(row=0, column=1, sticky=tk.NSEW, padx=2, pady=2)
 
     def create_equal_button(self):
         button = tk.Button(self.button_frame, text="=", bg=BLACK, fg=WHITE, font=DELETE_FOND_STYLE,
-                           activebackground=RED, activeforeground=BLACK)
+                           activebackground=RED, activeforeground=BLACK, command=self.evaluate)
         button.grid(row=3, rowspan=4, column=4, sticky=tk.NSEW, padx=2, pady=2)
 
         # ----------------------------------------------------------------------------------------
+
+    def add_to_expression(self, value):
+        self.current_expression += str(value)
+        self.update_label()
+
+    def append_operator(self, operator):
+        self.current_expression += operator
+        self.total_expression += self.current_expression
+        self.current_expression = ""
+        self.update_total_label()
+        self.update_label()
+
+    def clear(self):
+        self.current_expression = ""
+        self.total_expression = ""
+        self.update_total_label()
+        self.update_label()
+
+    def delete(self):
+        self.current_expression = self.current_expression[0:len(self.current_expression) - 1]
+        self.update_label()
+
+    def evaluate(self):
+        self.total_expression += self.current_expression
+        self.update_total_label()
+        self.current_expression = str(eval(self.total_expression))
+        self.total_expression = ""
+        self.update_label()
+
+    def update_total_label(self):
+        self.total_label.configure(text=self.total_expression)
+
+    def update_label(self):
+        self.label.configure(text=self.current_expression)
 
     def run(self):
         self.window.mainloop()

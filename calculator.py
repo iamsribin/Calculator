@@ -14,6 +14,7 @@ BLUE = "#20459B"
 
 
 class Calculator:
+
     def __init__(self):
         self.window = tk.Tk()
         self.window.title("Calculator")
@@ -35,16 +36,18 @@ class Calculator:
             7: (1, 1), 8: (1, 2), 9: (1, 3),
             4: (2, 1), 5: (2, 2), 6: (2, 3),
             1: (3, 1), 2: (3, 2), 3: (3, 3),
-            ".": (4, 3)
+            ".": (4, 1)
         }
         self.create_digit_button()
 
-        self.operations = {"*": "\u00d7", "-": "-", "+": "+"}
+        self.operations = {"*": "\u00d7", "-": "-", "+": "+", "/": "\u00f7"}
         self.create_operator_button()
 
         self.create_clear_button()
         self.create_delete_button()
         self.create_equal_button()
+        self.create_square_button()
+        self.create_sqrt_button()
 
         self.button_frame.rowconfigure(0, weight=1)
         for x in range(1, 5):
@@ -77,27 +80,23 @@ class Calculator:
     def create_digit_button(self):
         for digit, grid_value in self.digits.items():
             button = tk.Button(self.button_frame, text=str(digit), bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                               activebackground=BLACK, command=lambda x=digit: self.add_to_expression(x))
+                               activebackground=BLACK, command=lambda x=digit: self.digit_button_click(x))
             button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW, padx=2, pady=2)
 
         button = tk.Button(self.button_frame, text="0", bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                           activebackground=BLACK, command=lambda x=0: self.add_to_expression(x))
-        button.grid(row=4, column=1, columnspan=2, sticky=tk.NSEW, padx=2, pady=2)
+                           activebackground=BLACK, command=lambda x=0: self.digit_button_click(x))
+        button.grid(row=4, column=2, sticky=tk.NSEW, padx=2, pady=2)
 
     # ----------------------------------------------------------------------------------------------
 
     def create_operator_button(self):
-        i = 0
+        i = 1
         for operator, symbol in self.operations.items():
             button = tk.Button(self.button_frame, text=str(symbol), bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
                                activeforeground=RED, activebackground=BLACK,
-                               command=lambda x=operator: self.append_operator(x))
+                               command=lambda x=operator: self.operator_button_click(x))
             button.grid(row=i, column=4, sticky=tk.NSEW, padx=2, pady=2)
             i += 1
-
-        button = tk.Button(self.button_frame, text="\u00f7", bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                           activeforeground=RED, activebackground=BLACK, command=lambda y="/": self.append_operator(y))
-        button.grid(row=0, column=3, sticky=tk.NSEW, padx=2, pady=2)
 
     def create_clear_button(self):
         button = tk.Button(self.button_frame, text="C", bg=RED, fg=BLACK, font=DIGIT_FOND_STYLE,
@@ -112,20 +111,32 @@ class Calculator:
     def create_equal_button(self):
         button = tk.Button(self.button_frame, text="=", bg=BLACK, fg=WHITE, font=DELETE_FOND_STYLE,
                            activebackground=RED, activeforeground=BLACK, command=self.evaluate)
-        button.grid(row=3, rowspan=4, column=4, sticky=tk.NSEW, padx=2, pady=2)
+        button.grid(row=4, column=3, sticky=tk.NSEW, padx=2, pady=2)
+
+    def create_square_button(self):
+        button = tk.Button(self.button_frame, text="x\u00b2", bg=BLACK, fg=WHITE, font=DELETE_FOND_STYLE,
+                           command=self.square)
+        button.grid(row=0, column=3, sticky=tk.NSEW, padx=2, pady=2)
+
+    def create_sqrt_button(self):
+        button = tk.Button(self.button_frame, text="\u221ax", bg=BLACK, fg=WHITE, font=DELETE_FOND_STYLE,
+                           command=self.sqrt)
+        button.grid(row=0, column=4, sticky=tk.NSEW, padx=2, pady=2)
 
         # ----------------------------------------------------------------------------------------
 
-    def add_to_expression(self, value):
+    def digit_button_click(self, value):
         self.current_expression += str(value)
         self.update_label()
 
-    def append_operator(self, operator):
+    def operator_button_click(self, operator):
         self.current_expression += operator
         self.total_expression += self.current_expression
         self.current_expression = ""
         self.update_total_label()
         self.update_label()
+
+    # --------------------------------------------------------------------------------------------
 
     def clear(self):
         self.current_expression = ""
@@ -137,6 +148,16 @@ class Calculator:
         self.current_expression = self.current_expression[0:len(self.current_expression) - 1]
         self.update_label()
 
+    def square(self):
+        self.current_expression = str(eval(f'{self.current_expression}**2'))
+        self.update_label()
+
+    def sqrt(self):
+        self.current_expression = str(eval(f'{self.current_expression}**0.5'))
+        self.update_label()
+
+    # ----------------------------------------------------------------------------------------------
+
     def evaluate(self):
         self.total_expression += self.current_expression
         self.update_total_label()
@@ -146,6 +167,8 @@ class Calculator:
 
     def update_total_label(self):
         self.total_label.configure(text=self.total_expression)
+
+    # ------------------------------------------------------------------------------------------------
 
     def update_label(self):
         self.label.configure(text=self.current_expression)

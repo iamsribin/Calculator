@@ -1,7 +1,7 @@
 import tkinter as tk
 
 # FOND
-LARGE_FOND_STYLE = ("Arial", 40, "bold")
+LARGE_FOND_STYLE = ("Arial", 25, "bold")
 SMALL_FOND_STYLE = ("Arial", 16)
 DIGIT_FOND_STYLE = ("Arial", 24, "bold")
 DELETE_FOND_STYLE = ("Arial", 15, "bold")
@@ -159,19 +159,30 @@ class Calculator:
     # ----------------------------------------------------------------------------------------------
 
     def evaluate(self):
+
         self.total_expression += self.current_expression
         self.update_total_label()
-        self.current_expression = str(eval(self.total_expression))
-        self.total_expression = ""
-        self.update_label()
+        try:
+           self.current_expression = str(eval(self.total_expression))
 
-    def update_total_label(self):
-        self.total_label.configure(text=self.total_expression)
+           self.total_expression = ""
+
+        except Exception as e:
+            self.current_expression = "Erorr"
+
+        finally:
+         self.update_label()
 
     # ------------------------------------------------------------------------------------------------
 
+    def update_total_label(self):
+        expression = self.total_expression
+        for operator, symbols in self.operations.items():
+            expression = expression.replace(operator, f'{symbols}')
+        self.total_label.configure(text=expression)
+
     def update_label(self):
-        self.label.configure(text=self.current_expression)
+        self.label.configure(text=self.current_expression[:15])
 
     def run(self):
         self.window.mainloop()

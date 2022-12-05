@@ -48,7 +48,7 @@ class Calculator:
         self.create_equal_button()
         self.create_square_button()
         self.create_sqrt_button()
-
+        self.bind_key()
         self.button_frame.rowconfigure(0, weight=1)
         for x in range(1, 5):
             self.button_frame.columnconfigure(x, weight=1)
@@ -158,20 +158,30 @@ class Calculator:
 
     # ----------------------------------------------------------------------------------------------
 
+    def bind_key(self):
+        self.window.bind("<Return>", lambda event: self.evaluate())
+        for key in self.digits:
+            self.window.bind(str(key), lambda event, digit=key: self.digit_button_click(digit))
+        for key in self.operations:
+            self.window.bind(key, lambda event, operator=key: self.operator_button_click(operator))
+        self.window.bind(key, lambda event, clear=key: self.clear(clear))
+
+    # ------------------------------------------------------------------------------------------------
+
     def evaluate(self):
 
         self.total_expression += self.current_expression
         self.update_total_label()
         try:
-           self.current_expression = str(eval(self.total_expression))
+            self.current_expression = str(eval(self.total_expression))
 
-           self.total_expression = ""
+            self.total_expression = ""
 
         except Exception as e:
-            self.current_expression = "Erorr"
+            self.current_expression = "Error"
 
         finally:
-         self.update_label()
+            self.update_label()
 
     # ------------------------------------------------------------------------------------------------
 
@@ -187,6 +197,8 @@ class Calculator:
     def run(self):
         self.window.mainloop()
 
+
+# -------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
     calc = Calculator()

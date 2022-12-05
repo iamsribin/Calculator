@@ -10,7 +10,7 @@ DELETE_FOND_STYLE = ("Arial", 15, "bold")
 BLACK = "#161621"
 WHITE = "#FFFFFF"
 RED = "#F94040"
-BLUE = "#20459B"
+BLUE = "#3498DB"
 
 
 class Calculator:
@@ -21,7 +21,6 @@ class Calculator:
         self.window.iconbitmap("./calculator photo.ico")
         self.window.geometry("375x587")
         self.window.resizable(0, 0)
-        self.window.attributes("-alpha", 0.8)
         self.window.configure(bg=BLUE)
 
         self.total_expression = ""
@@ -49,6 +48,7 @@ class Calculator:
         self.create_square_button()
         self.create_sqrt_button()
         self.bind_key()
+
         self.button_frame.rowconfigure(0, weight=1)
         for x in range(1, 5):
             self.button_frame.columnconfigure(x, weight=1)
@@ -60,7 +60,7 @@ class Calculator:
         return frame
 
     def create_button_frame(self):
-        frame1 = tk.Frame(self.window, cursor="hand2", bg=BLUE)
+        frame1 = tk.Frame(self.window, cursor="hand2", bg=WHITE)
         frame1.pack(expand=True, fill="both")
         return frame1
 
@@ -79,12 +79,12 @@ class Calculator:
 
     def create_digit_button(self):
         for digit, grid_value in self.digits.items():
-            button = tk.Button(self.button_frame, text=str(digit), bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                               activebackground=BLACK, command=lambda x=digit: self.digit_button_click(x))
+            button = tk.Button(self.button_frame, text=str(digit), bg=WHITE, fg=BLACK, font=DIGIT_FOND_STYLE,
+                               borderwidth=0, command=lambda x=digit: self.digit_button_click(x))
             button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW, padx=2, pady=2)
 
-        button = tk.Button(self.button_frame, text="0", bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                           activebackground=BLACK, command=lambda x=0: self.digit_button_click(x))
+        button = tk.Button(self.button_frame, text="0", bg=WHITE, fg=BLACK, font=DIGIT_FOND_STYLE,
+                           borderwidth=0, command=lambda x=0: self.digit_button_click(x))
         button.grid(row=4, column=2, sticky=tk.NSEW, padx=2, pady=2)
 
     # ----------------------------------------------------------------------------------------------
@@ -92,35 +92,35 @@ class Calculator:
     def create_operator_button(self):
         i = 1
         for operator, symbol in self.operations.items():
-            button = tk.Button(self.button_frame, text=str(symbol), bg=BLACK, fg=WHITE, font=DIGIT_FOND_STYLE,
-                               activeforeground=RED, activebackground=BLACK,
+            button = tk.Button(self.button_frame, text=str(symbol), bg=WHITE, fg=BLUE, font=DIGIT_FOND_STYLE,
+                               activeforeground=RED, borderwidth=0,
                                command=lambda x=operator: self.operator_button_click(x))
             button.grid(row=i, column=4, sticky=tk.NSEW, padx=2, pady=2)
             i += 1
 
     def create_clear_button(self):
-        button = tk.Button(self.button_frame, text="C", bg=RED, fg=BLACK, font=DIGIT_FOND_STYLE,
-                           activebackground=RED, activeforeground=WHITE, command=self.clear)
+        button = tk.Button(self.button_frame, text="C", bg=WHITE, fg=RED, font=DIGIT_FOND_STYLE,
+                           activeforeground=RED, command=self.clear, borderwidth=0)
         button.grid(row=0, column=2, sticky=tk.NSEW, padx=2, pady=2)
 
     def create_delete_button(self):
-        button = tk.Button(self.button_frame, text="\u232b", bg=RED, fg=BLACK, font=DELETE_FOND_STYLE,
-                           activebackground=RED, activeforeground=WHITE, command=self.delete)
+        button = tk.Button(self.button_frame, text="\u232b", bg=WHITE, fg=RED, font=DELETE_FOND_STYLE,
+                           activeforeground=RED, borderwidth=0, command=self.delete)
         button.grid(row=0, column=1, sticky=tk.NSEW, padx=2, pady=2)
 
     def create_equal_button(self):
-        button = tk.Button(self.button_frame, text="=", bg=BLACK, fg=WHITE, font=DELETE_FOND_STYLE,
-                           activebackground=RED, activeforeground=BLACK, command=self.evaluate)
+        button = tk.Button(self.button_frame, text="=", bg=BLUE, fg=WHITE, font=DELETE_FOND_STYLE,
+                           activebackground=BLUE, activeforeground=RED, command=self.evaluate, borderwidth=0)
         button.grid(row=4, column=3, sticky=tk.NSEW, padx=2, pady=2)
 
     def create_square_button(self):
-        button = tk.Button(self.button_frame, text="x\u00b2", bg=BLACK, fg=WHITE, font=DELETE_FOND_STYLE,
-                           command=self.square)
+        button = tk.Button(self.button_frame, text="x\u00b2", bg=WHITE, fg=BLUE, font=DELETE_FOND_STYLE,
+                           command=self.square, borderwidth=0)
         button.grid(row=0, column=3, sticky=tk.NSEW, padx=2, pady=2)
 
     def create_sqrt_button(self):
-        button = tk.Button(self.button_frame, text="\u221ax", bg=BLACK, fg=WHITE, font=DELETE_FOND_STYLE,
-                           command=self.sqrt)
+        button = tk.Button(self.button_frame, text="\u221ax", bg=WHITE, fg=BLUE, font=DELETE_FOND_STYLE,
+                           command=self.sqrt, borderwidth=0)
         button.grid(row=0, column=4, sticky=tk.NSEW, padx=2, pady=2)
 
         # ----------------------------------------------------------------------------------------

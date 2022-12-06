@@ -3,7 +3,7 @@
 I got an task from the [CrossRoads Team](https://www.youtube.com/@BrototypeMalayalam "title text!") to build an calculator, while the python Programing Challenge.
 From an Programmers mind I accepted the challenge with hope, After start doing things gone worst but at last I completed.
 
-Latest Update Feature:  In the old version User could not enter inputs using keyboard. So I created a new function  [bind_key](https://github.com/iamsribin/Calculator/blob/5effd7da9eb130dc85266e708bbfe9c8d5e2964e/calculator.py#L161). 
+Latest Update Feature:  In the old version User could not enter inputs using keyboard.So I created a new function  [bind_key](https://github.com/iamsribin/Calculator/blob/5effd7da9eb130dc85266e708bbfe9c8d5e2964e/calculator.py#L161). 
 This is a typing function. `self.window.bind("<Return>", lambda event: self.evaluate())`This line of code specifies that pressing the Enter key is equivalent to pressing the Equals button.
 The two loops in this funtion display numbers when the numbers key pressed and oparetions when the oparation key is pressed.
 
@@ -24,9 +24,13 @@ ___
 ## Frame
 
 - [**create_display_frame**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def%20create_display_frame(self)%3A)
+
      *this this funtion creates the frame for adding labels*
+     
 - [**create_button_frame**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def%20create_button_frame(self)%3A)
+
     *this funtion creates the frame for adding buttons *
+    
 ## Labels
 
 - [**create_display_label**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def%20create_display_label(self))

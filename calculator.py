@@ -164,7 +164,6 @@ class Calculator:
             self.window.bind(str(key), lambda event, digit=key: self.digit_button_click(digit))
         for key in self.operations:
             self.window.bind(key, lambda event, operator=key: self.operator_button_click(operator))
-        self.window.bind(key, lambda event, clear=key: self.clear(clear))
 
     # ------------------------------------------------------------------------------------------------
 

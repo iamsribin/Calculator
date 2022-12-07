@@ -37,16 +37,23 @@ ___
     * **total_label**
      
         *This label is used to view the operations and numbers entered to perform the calculatoin. when the operation button or equal button is clicked,
-          those thins will come to this label.
+         those thins will come to this label.The string in the [total_expression](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L26) variable is displayed here.
        
     * **label**
      
-        *This label is used to view the currently entered numbers and show the results of the calculation.*
+        *This label is used to view the currently entered numbers and show the results of the The string in the [current_expression](calculation.https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L27) variable is displayed here.*
  ## Button
  
  - [**create_digit_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L80)
+ 
+     *The digits assigned to the digit variable in the[__ init __ ](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L18) funtion are installed 
+     into the [create_button_frame](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L69) using a loop Due to the operation of the loop in the[__ init __ ](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L18) funtion,the size of the created buttons increses  with the  size of the [create_button_frame](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L69).*
       
  - [**create_operator_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L92)
+       
+      *The operation symbols assingned to the operator variable in the  [__ init __ ](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L18) funtion are installed into the [create_button_frame](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L62) using a loop.Due to the operation of the loop in the[__ init __ ](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L18) funtion,the size of the created buttons increses  with the 
+      size of the [create_button_frame](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L69).*
+      
  - [**create_clear_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L101)
  - [**create_delete_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L106)
  - [**create_squre_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L116)

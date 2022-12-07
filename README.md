@@ -23,17 +23,17 @@ ___
 
 ## Frame
 
-- [**create_display_frame**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def%20create_display_frame(self)%3A)
+- [**create_display_frame**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L57)
 
      *this this funtion creates the frame for adding labels*
      
-- [**create_button_frame**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def%20create_button_frame(self)%3A)
+- [**create_button_frame**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L62)
 
     *this funtion creates the frame for adding buttons *
     
 ## Labels
 
-- [**create_display_label**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def%20create_display_label(self))
+- [**create_display_label**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L69)
     * **total_label**
      
         *This label is used to view the operations and numbers entered to perform the calculatoin. when the operation button or equal button is clicked,
@@ -44,14 +44,14 @@ ___
         *This label is used to view the currently entered numbers and show the results of the calculation.*
  ## Button
  
- - [**create_digit_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_digit_button,-(self)%3A)
+ - [**create_digit_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L80)
       
- - [**create_operator_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_operator_button,-(self)%3A)
- - [**create_clear_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_clear_button,-(self)%3A)
- - [**create_delete_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_delete_button,-(self)%3A)
- - [**create_squre_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_square_button,-(self)%3A)
- - [**create_sqrt_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_sqrt_button,-(self)%3A)
- - [**create_equal_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_equal_button,-(self)%3A)
+ - [**create_operator_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L92)
+ - [**create_clear_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L101)
+ - [**create_delete_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L106)
+ - [**create_squre_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L116)
+ - [**create_sqrt_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L121)
+ - [**create_equal_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L111)
 
 # How is it working ?
 ---

@@ -47,11 +47,11 @@ ___
  - [**create_digit_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_digit_button,-(self)%3A)
       
  - [**create_operator_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_operator_button,-(self)%3A)
- - [**create_clear_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_clear_button,-(self)%3A)
+ - [create_clear_button](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_clear_button,-(self)%3A)
  - [**create_delete_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_delete_button,-(self)%3A)
  - [**create_squre_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_square_button,-(self)%3A)
  - [**create_sqrt_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_sqrt_button,-(self)%3A)
- - [**create_equal_button**](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_equal_button,-(self)%3A)
+ - [create_equal_button](https://github.com/iamsribin/Calculator/blob/master/calculator.py#:~:text=def-,create_equal_button,-(self)%3A)
 
 # How is it working ?
 ---

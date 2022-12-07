@@ -18,9 +18,6 @@ ___
 
 *This is an calculator fully coded by me with Python. Here I am using Tkinter GUI (Graphical User Interface)*
 
-# Funtions
----
-
 ## Frame
 
 - [**create_display_frame**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L57)
@@ -41,7 +38,7 @@ ___
        
     * **label**
      
-        *This label is used to view the currently entered numbers and show the results of the The string in the [current_expression](calculation.https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L27) variable is displayed here.*
+        *This label is used to view the currently entered numbers and show the results of the The string in the [current_expression](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L27)variable is displayed here.*
  ## Button
  
  - [**create_digit_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L80)

@@ -54,11 +54,21 @@ ___
       *The operation symbols assingned to the operator variable in the  [__ init __ ](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L18) funtion are installed into the [create_button_frame](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L62) using a loop.Due to the operation of the loop in the[__ init __ ](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L18) funtion,the size of the created buttons increses  with the 
       size of the [create_button_frame](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L69).*
       
+ ## Special buttons 
+ 
+These buttons are created and added to the [create_button_frame](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L69)
+      
  - [**create_clear_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L101)
+ 
  - [**create_delete_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L106)
+ 
  - [**create_squre_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L116)
+ 
  - [**create_sqrt_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L121)
+   
  - [**create_equal_button**](https://github.com/iamsribin/Calculator/blob/098b0245daa1c87c04c7d4992634b63cee0c7170/calculator.py#L111)
+
+    
 
 # How is it working ?
 ---

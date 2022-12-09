@@ -5,6 +5,7 @@ LARGE_FOND_STYLE = ("Arial", 25, "bold")
 SMALL_FOND_STYLE = ("Arial", 16)
 DIGIT_FOND_STYLE = ("Arial", 24, "bold")
 DELETE_FOND_STYLE = ("Arial", 15, "bold")
+ERROR = "ERROR"
 
 # COLOR
 BLACK = "#161621"
@@ -25,6 +26,10 @@ class Calculator:
 
         self.total_expression = ""
         self.current_expression = ""
+
+        self.operation_control = False
+        self.equal_control = False
+        self.operator_change = True
 
         self.display_frame = self.create_display_frame()
         self.button_frame = self.create_button_frame()
@@ -126,15 +131,25 @@ class Calculator:
         # ----------------------------------------------------------------------------------------
 
     def digit_button_click(self, value):
-        self.current_expression += str(value)
-        self.update_label()
+        if self.current_expression != ERROR:
+            self.current_expression += str(value)
+            self.update_label()
+            self.operation_control = True
 
     def operator_button_click(self, operator):
-        self.current_expression += operator
-        self.total_expression += self.current_expression
-        self.current_expression = ""
-        self.update_total_label()
-        self.update_label()
+        expression = self.total_expression
+        if self.operation_control and self.current_expression != ERROR:
+            self.equal_control = True
+            self.current_expression += operator
+            self.total_expression += self.current_expression
+            self.current_expression = ""
+            self.update_total_label()
+            self.update_label()
+            self.operation_control = False
+            self.operator_change = False
+        elPyif not self.operator_change and self.current_expression != ERROR:
+            self.total_expression = expression[:-1] + operator
+            self.update_total_label()
 
     # --------------------------------------------------------------------------------------------
 
@@ -143,44 +158,62 @@ class Calculator:
         self.total_expression = ""
         self.update_total_label()
         self.update_label()
+        self.operation_control = False
 
     def delete(self):
-        self.current_expression = self.current_expression[0:len(self.current_expression) - 1]
-        self.update_label()
+        if self.current_expression != ERROR:
+            self.current_expression = self.current_expression[0:len(self.current_expression) - 1]
+            self.update_label()
 
     def square(self):
-        self.current_expression = str(eval(f'{self.current_expression}**2'))
-        self.update_label()
+        if self.operation_control and self.current_expression != ERROR:
+            try:
+                self.current_expression = str(eval(f'{self.current_expression}**2'))
+            except Exception:
+                self.current_expression = ERROR
+            finally:
+                self.update_label()
 
     def sqrt(self):
-        self.current_expression = str(eval(f'{self.current_expression}**0.5'))
-        self.update_label()
+        if self.operation_control and self.current_expression != ERROR:
+            try:
+                self.current_expression = str(eval(f'{self.current_expression}**0.5'))
+            except Exception:
+                self.current_expression = ERROR
+            finally:
+                self.update_label()
 
     # ----------------------------------------------------------------------------------------------
 
     def bind_key(self):
-        self.window.bind("<Return>", lambda event: self.evaluate())
+
         for key in self.digits:
             self.window.bind(str(key), lambda event, digit=key: self.digit_button_click(digit))
         for key in self.operations:
             self.window.bind(key, lambda event, operator=key: self.operator_button_click(operator))
+        self.window.bind("<Return>", lambda event: self.evaluate())
+        self.window.bind("<BackSpace>", lambda event: self.delete())
+        self.window.bind("<Delete>", lambda event: self.clear())
+        self.window.bind("<X>", lambda event: self.square())
+        self.window.bind("<x>", lambda event: self.sqrt())
 
     # ------------------------------------------------------------------------------------------------
 
     def evaluate(self):
 
-        self.total_expression += self.current_expression
-        self.update_total_label()
-        try:
-            self.current_expression = str(eval(self.total_expression))
+        if self.operation_control and self.equal_control and self.current_expression != ERROR:
+            self.total_expression += self.current_expression
+            self.update_total_label()
+            try:
+                self.current_expression = str(eval(self.total_expression))
+                self.total_expression = ""
 
-            self.total_expression = ""
+            except Exception:
+                self.current_expression = ERROR
 
-        except Exception as e:
-            self.current_expression = "Error"
-
-        finally:
-            self.update_label()
+            finally:
+                self.update_label()
+                self.equal_control = False
 
     # ------------------------------------------------------------------------------------------------
 
@@ -191,7 +224,7 @@ class Calculator:
         self.total_label.configure(text=expression)
 
     def update_label(self):
-        self.label.configure(text=self.current_expression[:15])
+        self.label.configure(text=self.current_expression[:17])
 
     def run(self):
         self.window.mainloop()

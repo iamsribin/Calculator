@@ -14,7 +14,9 @@ Author: Sribin K
 Mail: sribin85@gmail.com
 ___
 
-<img width="276" alt="model of the calculator" src="https://user-images.githubusercontent.com/103424492/205878975-2aa55f66-49c3-461c-8511-84612490254e.png"> "   " <img width="279" alt="calculator" src="https://user-images.githubusercontent.com/103424492/205879343-7aa1ba3a-3e11-42ed-bb86-ec5e5d4b72bc.png">
+<img width="276" alt="model of the calculator" src="https://user-images.githubusercontent.com/103424492/205878975-2aa55f66-49c3-461c-8511-84612490254e.png"> "   " 
+<img width="379" alt="python calculator" src="https://user-images.githubusercontent.com/103424492/206649553-4c65875f-2c4e-4f90-99e9-88859a54112e.png">
+
 
 *This is an calculator fully coded by me with Python. Here I am using Tkinter GUI (Graphical User Interface)*
 

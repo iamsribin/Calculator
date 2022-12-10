@@ -147,7 +147,7 @@ class Calculator:
             self.update_label()
             self.operation_control = False
             self.operator_change = False
-        elPyif not self.operator_change and self.current_expression != ERROR:
+        elif not self.operator_change and self.current_expression != ERROR:
             self.total_expression = expression[:-1] + operator
             self.update_total_label()
 
